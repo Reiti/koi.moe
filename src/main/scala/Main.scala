@@ -1,12 +1,11 @@
 import io.finch.{head => _, body => _, _}
 import com.twitter.finagle.Http
-
-
 import scalatags.Text._
 import scalatags.Text.short._
 
 
 object Main extends App {
+
   val api: Endpoint[String] = get(/) {
     Ok(
       html(
@@ -16,6 +15,7 @@ object Main extends App {
         )
       ).render
   ).withContentType(Some("text/html")) }
+
 
   Http.serve("0.0.0.0:80", api.toService)
 }
