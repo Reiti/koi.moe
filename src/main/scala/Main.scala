@@ -1,10 +1,8 @@
-/**
-  * User: Michael Reitgruber
-  * Date: 07.02.2016
-  * Time: 01:53
-  */
-object Main {
-  def main(args: Array[String]) = {
-    println("Ok")
-  }
+import io.finch._
+import com.twitter.finagle.Http
+
+object Main extends App {
+  val api: Endpoint[String] = get("hello") { Ok("Hello, World!") }
+
+  Http.serve(":8080", api.toService)
 }
