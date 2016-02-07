@@ -1,12 +1,14 @@
 import io.finch.{head => _, body => _, _}
 import com.twitter.finagle._
 import com.twitter.finagle.http.{Request, Response}
-import services.ResourceService
+import services.{WaifuService, ResourceService}
 import scalatags.Text._
 import scalatags.Text.short._
 import com.twitter.util.Await
 import models.WaifuMapping
 import slick.driver.H2Driver.api._
+
+
 object Main extends App {
 
   val db = Database.forConfig("h2mem1")
@@ -21,7 +23,7 @@ object Main extends App {
       ).render
   ).withContentType(Some("text/html")) }
 
-  val api: Service[Request, Response] = (welcome :+: ResourceService.images:+:ResourceService.wai).toService
+  val api: Service[Request, Response] = (welcome :+: ResourceService() :+: WaifuService()).toService
 
   Await.ready(Http.serve("0.0.0.0:80", api))
   db.close()
