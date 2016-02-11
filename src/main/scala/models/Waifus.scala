@@ -16,8 +16,16 @@ object WaifuMapping{
     val waifus = TableQuery[Waifus]
     Await.result(db.run(DBIO.seq(
       waifus.schema.create,
-      waifus += Waifu("Misaka", "Mikoto", 6.1, 8.2),
-      waifus += Waifu("Onodera", "Kosaki", 9.1, 3.3)
+      waifus += Waifu("Misaka", "Mikoto", 10, 10),
+      waifus += Waifu("Onodera", "Kosaki", 10, 10),
+      waifus += Waifu("Kirisaki", "Chitoge", 10, 10),
+      waifus += Waifu("Yurizaki", "Mira", 10, 10),
+      waifus += Waifu("Kato", "Megumi", 10, 10),
+      waifus += Waifu("Aoyama", "Nanami", 10, 10),
+      waifus += Waifu("Shiina", "Mashiro", 10, 10),
+      waifus += Waifu("Makise", "Kurisu", 10, 10),
+      waifus += Waifu("Oshino", "Ougi", 10, 10),
+      waifus += Waifu("Senjougahara", "Hitagi", 10, 10)
     )), Duration.Inf)
   }
 }
